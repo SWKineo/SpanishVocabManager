@@ -71,28 +71,32 @@ public class LineManager {
     
     public static void addConj (String conj) {
         switch (conjState) {
-            case 0:
+            case -1:
                 days[dayNum].conj[days[dayNum].conjNum].conj[0] = conj;
+                System.out.print("Yo Form: ");
+                conjState++;
+            case 0:
+                days[dayNum].conj[days[dayNum].conjNum].conj[1] = conj;
                 System.out.print("Tú Form: ");
                 conjState++;
                 break;
             case 1:
-                days[dayNum].conj[days[dayNum].conjNum].conj[1] = conj;
+                days[dayNum].conj[days[dayNum].conjNum].conj[2] = conj;
                 System.out.print("Él Form: ");
                 conjState++;
                 break;
             case 2:
-                days[dayNum].conj[days[dayNum].conjNum].conj[2] = conj;
+                days[dayNum].conj[days[dayNum].conjNum].conj[3] = conj;
                 System.out.print("Nos Form: ");
                 conjState++;
                 break;
             case 3:
-                days[dayNum].conj[days[dayNum].conjNum].conj[3] = conj;
+                days[dayNum].conj[days[dayNum].conjNum].conj[4] = conj;
                 System.out.print("Ellos Form: ");
                 conjState++;
                 break;
             case 4:
-                days[dayNum].conj[days[dayNum].conjNum].conj[4] = conj;
+                days[dayNum].conj[days[dayNum].conjNum].conj[5] = conj;
                 System.out.print("Yo Form: ");
                 conjState = 0;
                 days[dayNum].conjNum++;

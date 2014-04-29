@@ -51,11 +51,15 @@ public class CommandManager {
             case "/desc":
                 LineManager.mode = 2;
                 System.out.println ("Description Mode.");
+                DescriptionWindow.showFrame();
+                System.out.println ("Use the \"Add Description\" window to input " +
+                        "your descritpion.");
+                System.out.println ("Once you're done writing, press [ENTER].");
                 break;
             case "/conj":
                 LineManager.mode = 3;
-                System.out.print ("Yo Form: ");
-                InputManager.conjState = 0;
+                System.out.print ("Infinitive: ");
+                InputManager.conjState = -1;
                 break;
             case "/ex":
                 LineManager.mode = 4;

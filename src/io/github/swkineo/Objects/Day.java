@@ -36,13 +36,13 @@ public class Day {
         this.desc = new String[10];
         
         this.conj = new Conjugation[20];
-        for (int n = 0; n < 20; n++) {
-            this.conj[n] = new Conjugation ();
+        for (Conjugation c : conj) {
+            c = new Conjugation ();
         }
         
         this.trans = new Translation[200];
-        for (int n = 0; n < 200; n++) {
-            this.trans[n] = new Translation ();
+        for (Translation t : trans) {
+            t = new Translation ();
         }
     }
     

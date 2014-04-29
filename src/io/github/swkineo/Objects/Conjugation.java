@@ -14,13 +14,14 @@ public class Conjugation {
     public String[] conj;
     
     public Conjugation () {
-        this.conj = new String[5];
+        this.conj = new String[6];
         
         this.conj[0] = "";
         this.conj[1] = "";
         this.conj[2] = "";
         this.conj[3] = "";
         this.conj[4] = "";
+        this.conj[5] = "";
     }
     
     //public void addConj (String yo, String tu, String el, String nos, String ellos) {

@@ -30,65 +30,28 @@ public class InputManager {
                 in = in.substring (0, i);
             }
             
-            System.out.println("cmd: " + in + ", args: " + args);
+            //System.out.println("cmd: " + in + ", args: " + args);
             CommandManager.input (in, args);
         } else {
             i = in.indexOf('-');
             in = accentManager(in, i);
             
-            if (LineManager.mode == 3) {
-                addConj (in);
-                return;
-            } else {
-                if (LineManager.mode == 4) {
+            switch (LineManager.mode) {
+                case 2:
+                    // TODO: Add Logic
+                    break;
+                case 3:
+                    LineManager.addConj(in);
+                    break;
+                case 4:
                     addSubConj (in);
-                    return;
-                }
+                    break;
+                default:
+                    // foo is never used.
+                    String foo = "";
+                    LineManager.addElement (in, foo);
+                    break;
             }
-            
-            // foo is never used.
-            
-            String foo = "";
-            
-            LineManager.addElement (in, foo);
-        }
-    }
-    
-    public static void addConj (String conj) {
-        String yo, tu, el, nos, ellos;
-        switch (conjState) {
-            case 0:
-                LineManager.days[LineManager.dayNum].conj[LineManager.days[LineManager.dayNum].conjNum].conj[0] = conj;
-                System.out.print("Tú Form: ");
-                conjState++;
-                break;
-            case 1:
-                LineManager.days[LineManager.dayNum].conj[LineManager.days[LineManager.dayNum].conjNum].conj[1] = conj;
-                System.out.print("Él Form: ");
-                conjState++;
-                break;
-            case 2:
-                LineManager.days[LineManager.dayNum].conj[LineManager.days[LineManager.dayNum].conjNum].conj[2] = conj;
-                System.out.print("Nos Form: ");
-                conjState++;
-                break;
-            case 3:
-                LineManager.days[LineManager.dayNum].conj[LineManager.days[LineManager.dayNum].conjNum].conj[3] = conj;
-                System.out.print("Ellos Form: ");
-                conjState++;
-                break;
-            case 4:
-                LineManager.days[LineManager.dayNum].conj[LineManager.days[LineManager.dayNum].conjNum].conj[4] = conj;
-                System.out.print("Yo Form: ");
-                conjState = 0;
-                LineManager.days[LineManager.dayNum].conjNum++;
-                break;
-            default:
-                System.out.println("Error Occured: InputManager.conjState is" +
-                        " out of bounds.");
-                System.out.print("Yo Form: ");
-                conjState = 0;
-                break;
         }
     }
     
