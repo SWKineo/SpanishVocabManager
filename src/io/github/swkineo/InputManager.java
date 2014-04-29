@@ -21,6 +21,9 @@ public class InputManager {
     
     public static void manage (String in) {
         int i;
+        // foo is never used.
+        String foo = "";
+                    
         if (0 == in.indexOf('/')) {
             String args = null;
             i = in.indexOf(' ');
@@ -38,7 +41,8 @@ public class InputManager {
             
             switch (LineManager.mode) {
                 case 2:
-                    // TODO: Add Logic
+                    LineManager.addElement (
+                            DescriptionWindow.descInput.getText (), foo);
                     break;
                 case 3:
                     LineManager.addConj(in);
@@ -47,8 +51,6 @@ public class InputManager {
                     addSubConj (in);
                     break;
                 default:
-                    // foo is never used.
-                    String foo = "";
                     LineManager.addElement (in, foo);
                     break;
             }

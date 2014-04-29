@@ -6,6 +6,8 @@
 
 package io.github.swkineo;
 
+import io.github.swkineo.Objects.Day;
+
 
 
 /**
@@ -64,6 +66,17 @@ public class CommandManager {
             case "/ex":
                 LineManager.mode = 4;
                 System.out.println ("Sub-Conjugation Mode.");
+                break;
+            case "/debug":
+                String[] a = {
+                    "title",
+                    "yo",
+                    "tu",
+                    "el",
+                    "nosostros",
+                    "ellos"
+                };
+                Day.debugConjChart (a);
                 break;
             // TODO: Add cases for extra commands
             default:
