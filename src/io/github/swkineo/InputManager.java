@@ -41,6 +41,7 @@ public class InputManager {
             
             switch (LineManager.mode) {
                 case 2:
+                    // TODO: Add tool to close the window after a mode change.
                     LineManager.addElement (
                             DescriptionWindow.descInput.getText (), foo);
                     break;
