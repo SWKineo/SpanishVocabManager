@@ -125,12 +125,18 @@ public class Day {
            than the length of the longest word. Correction adds an exra space
            to the centering in a case of an odd max lenght.
         */
-        int l = getMaxElement(a) + 2;
+        int l = a[getMaxElement(a)].length + 2;
         
-        // TODO: Make correction into a String[] with an element for each
-        // conjugation. Redo the logic to accomadate for getMaxElemetn.
-        String correction = "";
-        if ((l % 2) == 1) correction = " ";
+        String[] correction = new String[3];
+        
+        for (int i = 1; i < 4; i++) {
+            if (a[i].length % 2 == 1) {
+                correction[i - 1] = " "
+            } else {
+                correction[i - 1] = "";
+            }
+        }
+        
         String title;
         
         // Centers the title of the chart, considering the chart's shape.
@@ -141,11 +147,11 @@ public class Day {
         String chartFrame = new String (frameArray);
         
         s += title + "\n";
-        s += center(a[1], l) + correction + "|" + center(a[2], l) + "\n";
+        s += center(a[1], l) + correction[0] + "|" + center(a[4], l) + "\n";
         s += chartFrame + "|" + chartFrame + "\n";
-        s += center(a[3], l) + correction + "|" + center("X", l) + "\n";
+        s += center(a[2], l) + correction[1] + "|" + center("X", l) + "\n";
         s += chartFrame + "|" + chartFrame + "\n";
-        s += center(a[4], l) + correction + "|" + center(a[5], l) + "\n";
+        s += center(a[3], l) + correction[2] + "|" + center(a[5], l) + "\n";
         
         System.out.println(s);
     }
