@@ -75,6 +75,7 @@ public class LineManager {
                 days[dayNum].conj[days[dayNum].conjNum].conj[0] = conj;
                 System.out.print("Yo Form: ");
                 conjState++;
+                break;
             case 0:
                 days[dayNum].conj[days[dayNum].conjNum].conj[1] = conj;
                 System.out.print("Tú Form: ");
@@ -97,7 +98,7 @@ public class LineManager {
                 break;
             case 4:
                 days[dayNum].conj[days[dayNum].conjNum].conj[5] = conj;
-                System.out.print("Yo Form: ");
+                System.out.print("Infinitive: ");
                 conjState = 0;
                 days[dayNum].conjNum++;
                 break;
