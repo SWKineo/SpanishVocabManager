@@ -39,13 +39,13 @@ public class Day {
         this.desc = new String[10];
         
         this.conj = new Conjugation[20];
-        for (Conjugation c : conj) {
-            c = new Conjugation ();
+        for (int i = 0; i < 20; i++) {
+            this.conj[i] = new Conjugation ();
         }
         
         this.trans = new Translation[200];
-        for (Translation t : trans) {
-            t = new Translation ();
+        for (int i = 0; i < 20; i++) {
+            this.trans[i] = new Translation ();
         }
     }
     
@@ -69,21 +69,43 @@ public class Day {
         }
         
         // Print Sub-Conjugations
-        for (int i = 200; i < subConjNum; i--) {
+        for (int i = 200; i > subConjNum; i--) {
             s += trans[i].words[0] + subConjForm + trans[i].words[1] + "\n";
         }
         
         // Print Conjugations
-        for (int i = 0; i < conjNum; i++) {
-            double l = getMaxElement(conj[i].conj);
-            double titleLength = (double)conj[i].conj[0].length();
-            // Centered is used to center the title on the Conjugation Chart.
-            int centered = (int)((0.5 * l) - (0.5 * titleLength));
+        for (int i = 0; i <= conjNum; i++) {
+                /* Each word needs to be centered on a bar that's 2 characters longer
+               than the length of the longest word. Correction adds an exra space
+               to the centering in a case of an odd max lenght.
+            */
+            int l = conj[conjNum].conj[getMaxElement(conj[conjNum].conj)].length() + 2;
+        
+            String[] correction = new String[3];
+        
+            for (int i2 = 1; i2 < 4; i2++) {
+                if (conj[conjNum].conj[i2].length() % 2 == 0) {
+                    correction[i2 - 1] = " ";
+                } else {
+                    correction[i2 - 1] = "";
+                }
+            }
+        
+            String title;
+        
+            // Centers the title of the chart, considering the chart's shape.
+            title = center(conj[conjNum].conj[0] + ":", (2 * l) + 3);
+        
+            char[] frameArray = new char [l];
+            Arrays.fill(frameArray, '-');
+            String chartFrame = new String (frameArray);
             
-            char[] centering = new char[centered];
-            Arrays.fill(centering, ' ');
-            
-            s += conj[i].conj[0];
+            s += title + ":" +"\n";
+            s += center(conj[conjNum].conj[1], l) + correction[0] + "|" + center(conj[conjNum].conj[4], l) + "\n";
+            s += chartFrame + "|" + chartFrame + "\n";
+            s += center(conj[conjNum].conj[2], l) + correction[1] + "|" + center("X", l) + "\n";
+            s += chartFrame + "|" + chartFrame + "\n";
+            s += center(conj[conjNum].conj[3], l) + correction[2] + "|" + center(conj[conjNum].conj[5], l) + "\n";
         }
         
         return s + "}" + "\n";
@@ -97,8 +119,10 @@ public class Day {
         
         for (int i = 1; i < a.length; i++) {
             l = a[i].length();
-            if (l > length) length = l;
-            index = i;
+            if (l > length)  {
+                length = l;
+                index = i;
+            }
         }
         
         return index;
@@ -109,7 +133,7 @@ public class Day {
         String s = "";
         
         // Creates the correct amount of spacing before the word.
-        int center = (int)((0.5 * (ref)) - (0.5 * word.length()));
+        int center = (int)(((0.5 * (ref)) - (0.5 * word.length())));
         char[] centering = new char[center];
         Arrays.fill(centering, ' ');
         String spaces = new String (centering);        
@@ -125,27 +149,33 @@ public class Day {
            than the length of the longest word. Correction adds an exra space
            to the centering in a case of an odd max lenght.
         */
-        int l = getMaxElement(a) + 2;
+        int l = a[getMaxElement(a)].length() + 2;
         
-        // TODO: Make correction into a String[] with an element for each
-        // conjugation. Redo the logic to accomadate for getMaxElemetn.
-        String correction = "";
-        if ((l % 2) == 1) correction = " ";
+        String[] correction = new String[3];
+        
+        for (int i = 1; i < 4; i++) {
+            if (a[i].length() % 2 == 0) {
+                correction[i - 1] = " ";
+            } else {
+                correction[i - 1] = "";
+            }
+        }
+        
         String title;
         
         // Centers the title of the chart, considering the chart's shape.
-        title = center(a[0], (2 * l) + 1);
+        title = center(a[0] + ":", (2 * l) + 3);
         
         char[] frameArray = new char [l];
         Arrays.fill(frameArray, '-');
         String chartFrame = new String (frameArray);
         
-        s += title + "\n";
-        s += center(a[1], l) + correction + "|" + center(a[2], l) + "\n";
+        s += title + ":" +"\n";
+        s += center(a[1], l) + correction[0] + "|" + center(a[4], l) + "\n";
         s += chartFrame + "|" + chartFrame + "\n";
-        s += center(a[3], l) + correction + "|" + center("X", l) + "\n";
+        s += center(a[2], l) + correction[1] + "|" + center("X", l) + "\n";
         s += chartFrame + "|" + chartFrame + "\n";
-        s += center(a[4], l) + correction + "|" + center(a[5], l) + "\n";
+        s += center(a[3], l) + correction[2] + "|" + center(a[5], l) + "\n";
         
         System.out.println(s);
     }
