@@ -8,11 +8,14 @@ package io.github.swkineo;
 
 import static io.github.swkineo.InputManager.conjState;
 import io.github.swkineo.Objects.Day;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
  * @author swkin_000
- */
+ */ 
 public class LineManager {
     public static Day[] days = new Day[3];
     public static int dayNum = -1;
@@ -24,7 +27,7 @@ public class LineManager {
     public static String finalText = "";
     // tempText is appended to finalText on each refresh.
     public static String tempText = "";
-    
+
     // TODO: Fix reset after Day 2.
     public static void addDay () {
         String dayString = "";
@@ -34,7 +37,7 @@ public class LineManager {
         }
         dayNum++;
         days[dayNum] = new Day ();
-        finalText += dayString + "Day " + (dayNum + 1) + " {" + "\n";
+        finalText += dayString;
         OutputPreview.preview.setText (finalText);
     }
     
@@ -99,22 +102,34 @@ public class LineManager {
             case 4:
                 days[dayNum].conj[days[dayNum].conjNum].conj[5] = conj;
                 System.out.print("Infinitive: ");
-                conjState = 0;
+                conjState = -1;
                 days[dayNum].conjNum++;
                 break;
             default:
                 System.out.println("Error Occured: InputManager.conjState is" +
                         " out of bounds.");
-                System.out.print("Yo Form: ");
-                conjState = 0;
+                System.out.print("Infinitive Form: ");
+                conjState = -1;
                 break;
         }
+        output();
     }
     
     public static void output () {
         if (mode == -1) return;
         tempText = days[dayNum].toString ();
         OutputPreview.preview.setText (finalText + tempText);
+        saveToFile();
+    }
+    
+    public static void saveToFile () {
+        try {
+            BufferedWriter writer = new BufferedWriter (new FileWriter ("C:\\Users\\Public\\Documents" + SpanishVocab.fileName + ".txt"));
+            writer.write(days[dayNum].toString());
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println("An error occured when saving the file.");
+        }
     }
     
 }

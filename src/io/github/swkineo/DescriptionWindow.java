@@ -72,6 +72,7 @@ public class DescriptionWindow extends javax.swing.JFrame {
 
     /**
      */
+        
     public static void showFrame () {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

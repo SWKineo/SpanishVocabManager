@@ -70,11 +70,11 @@ public class CommandManager {
             case "/debug":
                 String[] a = {
                     "title",
-                    "yo",
-                    "tu",
-                    "el",
-                    "nosostros",
-                    "ellos"
+                    "Soy",
+                    "Eres",
+                    "Es",
+                    "Somos",
+                    "Son"
                 };
                 Day.debugConjChart (a);
                 break;

@@ -16,6 +16,7 @@ public class InputManager {
     
     // 0: Yo, 1: Tu, 2: El, 3: Nos, 4: Ellos
     public static int conjState = 0;
+    public static String fileName;
     
     public static void manage (String in) {
         int i;
@@ -42,6 +43,7 @@ public class InputManager {
                     // TODO: Add tool to close the window after a mode change.
                     LineManager.addElement (
                             DescriptionWindow.descInput.getText (), foo);
+                    DescriptionWindow.descInput.setText("");
                     break;
                 case 3:
                     LineManager.addConj(in);
