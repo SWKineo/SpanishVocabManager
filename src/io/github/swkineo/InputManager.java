@@ -35,14 +35,13 @@ public class InputManager {
             //System.out.println("cmd: " + in + ", args: " + args);
             CommandManager.input (in, args);
         } else {
-            i = in.indexOf('-');
-            in = accentManager(in, i);
+            in = accentManager(in);
             
             switch (LineManager.mode) {
                 case 2:
                     // TODO: Add tool to close the window after a mode change.
                     LineManager.addElement (
-                            DescriptionWindow.descInput.getText (), foo);
+                            accentManager(DescriptionWindow.descInput.getText ()), foo);
                     DescriptionWindow.descInput.setText("");
                     break;
                 case 3:
@@ -67,9 +66,35 @@ public class InputManager {
     }
 
     // TODO: Commenting and Logic
-    public static String accentManager (String word, int i) {
-        if (i < 0) return word;
-        
+    public static String accentManager (String word) {
+        for (int i = word.indexOf("-a"); i != -1; i = word.indexOf("-a")) {
+            word = word.substring(0, i) + "á" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("-e"); i != -1; i = word.indexOf("-e")) {
+            word = word.substring(0, i) + "é" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("-i"); i != -1; i = word.indexOf("-i")) {
+            word = word.substring(0, i) + "í" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("-o"); i != -1; i = word.indexOf("-o")) {
+            word = word.substring(0, i) + "ó" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("--u"); i != -1; i = word.indexOf("--u")) {
+            word = word.substring(0, i) + "ü" + word.substring(i+3, word.length());
+        }
+        for (int i = word.indexOf("-u"); i != -1; i = word.indexOf("-u")) {
+            word = word.substring(0, i) + "ú" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("-n"); i != -1; i = word.indexOf("-n")) {
+            word = word.substring(0, i) + "ñ" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("-?"); i != -1; i = word.indexOf("-?")) {
+            word = word.substring(0, i) + "¿" + word.substring(i+2, word.length());
+        }
+        for (int i = word.indexOf("-!"); i != -1; i = word.indexOf("-!")) {
+            word = word.substring(0, i) + "¡" + word.substring(i+2, word.length());
+        }
+                                            
         return word;
     }
     
